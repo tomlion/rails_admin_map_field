@@ -46,3 +46,12 @@ module RailsAdmin::Config::Fields::Types
     end
   end
 end
+
+RailsAdmin::Config::Fields.register_factory do |parent, properties, fields|
+  if properties[:name] == :map
+    fields << RailsAdmin::Config::Fields::Types::Map.new(parent, properties[:name], properties)
+    true
+  else
+    false
+  end
+end
